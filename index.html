@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOpsHub | Cloud Operations</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+:root {
+  --bg: #fbf8ff;
+  --card: #ffffff;
+  --ink: #302451;
+  --muted: #8a80a8;
+  --line: #eee5f8;
+  --pink: #df70b9;
+  --lav: #9c82dc;
+  --green: #279b79;
+  --shadow: 0 12px 35px rgba(105,75,150,.07);
+}
+
+body.dark {
+  --bg: #171326;
+  --card: #241d37;
+  --ink: #f4edff;
+  --muted: #b5a8ce;
+  --line: #403354;
+  --shadow: 0 12px 35px rgba(0,0,0,.18);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "DM Sans", sans-serif;
+  transition: .25s;
+}
+
+a { text-decoration: none; color: inherit; }
+
+button, input { font: inherit; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 235px 1fr;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  padding: 28px 18px;
+  background: linear-gradient(180deg,#f0e7ff,#fff0f8);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark .sidebar {
+  background: #241a36;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 38px;
+}
+
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  color: white;
+  font-size: 23px;
+  background: linear-gradient(135deg,#b49aea,#e68bc7);
+}
+
+.brand h2 {
+  font: 800 20px Manrope;
+}
+
+.brand h2 span { color: #b06fca; }
+
+.brand small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.nav-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: #a99cbd;
+  margin: 0 12px 12px;
+  text-transform: uppercase;
+}
+
+nav { display: grid; gap: 7px; }
+
+nav a {
+  padding: 13px;
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  transition: .2s;
+}
+
+nav a:hover,
+nav a.active {
+  color: #9861b8;
+  background: linear-gradient(100deg,#f8dff1,#e9e1ff);
+}
+
+.sidebar-bottom { margin-top: auto; }
+
+.side-card {
+  background: linear-gradient(135deg,#fff7fd,#f1eaff);
+  border: 1px solid #e9d9f3;
+  border-radius: 16px;
+  padding: 17px;
+  margin-bottom: 20px;
+}
+
+body.dark .side-card { background: #2d2240; }
+
+.side-card h4 { margin: 10px 0 7px; }
+
+.side-card p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 15px;
+}
+
+.avatar {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#f8d5e9,#d9ceff);
+  color: #6c4a9d;
+  font-weight: bold;
+}
+
+.profile small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* MAIN */
+
+main {
+  min-width: 0;
+  padding: 24px 30px 0;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 28px;
+}
+
+.search {
+  position: relative;
+  flex: 1;
+  max-width: 440px;
+  margin-left: auto;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--card);
+  color: var(--ink);
+  outline: none;
+}
+
+.search input:focus { border-color: var(--lav); }
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 22px;
+}
+
+.overline {
+  color: #b17bc8;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.page-title h1 {
+  font: 800 clamp(25px,3vw,34px) Manrope;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.page-title p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.date-chip {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 11px 14px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* HERO */
+
+.hero {
+  border: 1px solid #e8d7f7;
+  border-radius: 23px;
+  padding: 35px;
+  background: linear-gradient(115deg,#fff0f9,#f5edff 60%,#ece6ff);
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+body.dark .hero {
+  background: linear-gradient(115deg,#38233f,#2c254a);
+  border-color: var(--line);
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 8px 13px;
+  border-radius: 30px;
+  background: #ffffffb5;
+  color: #9771b4;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.hero h2 {
+  font: 800 clamp(28px,3.5vw,43px)/1.2 Manrope;
+  letter-spacing: -1.5px;
+  margin: 20px 0 12px;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg,#d65eae,#9274d6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 480px;
+  color: #82769e;
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 23px;
+}
+
+body.dark .hero p { color: #c2b4d9; }
+
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 19px;
+  background: linear-gradient(100deg,#df70b9,#a17de0);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px #dca4d955;
+}
+
+.hero-art {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.cloud {
+  font-size: 110px;
+  color: #b5a0ec;
+  filter: drop-shadow(0 12px 15px #b8a1dc66);
+}
+
+.server-stack {
+  position: absolute;
+  top: 58%;
+  display: grid;
+  gap: 7px;
+  width: 125px;
+}
+
+.server {
+  background: linear-gradient(90deg,#b47cdd,#8c78d9);
+  color: white;
+  border-radius: 7px;
+  padding: 9px;
+  font-size: 10px;
+  box-shadow: 0 5px 10px #b8a2df70;
+}
+
+.tech {
+  position: absolute;
+  background: #ffffffdf;
+  color: #6c5a98;
+  border: 1px solid #eadcf7;
+  border-radius: 12px;
+  padding: 10px 13px;
+  font-size: 11px;
+  font-weight: bold;
+  box-shadow: var(--shadow);
+}
+
+.tech.aws { top: 5px; left: 0; }
+.tech.tf { top: 5px; right: 0; }
+.tech.jenkins { top: 45%; left: -10px; }
+.tech.docker { top: 45%; right: -10px; }
+.tech.github { bottom: 0; left: 5%; }
+.tech.monitor { bottom: 0; right: 0; }
+
+/* METRICS */
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+  margin: 22px 0;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  padding: 19px;
+  box-shadow: var(--shadow);
+}
+
+.metric-icon {
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg,#fbe5f6,#e9e1ff);
+  color: #a06dc7;
+  font-size: 20px;
+}
+
+.metric small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.metric strong {
+  display: block;
+  font: 800 20px Manrope;
+}
+
+.metric p {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* PANELS */
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.panel-head {
+  padding: 17px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel-head h3 { font: 700 13px Manrope; }
+
+.text-btn {
+  background: none;
+  border: 0;
+  color: #a477c5;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.resource-list { padding: 5px 17px; }
+
+.resource {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+}
+
+.resource:last-child { border: 0; }
+
+.resource-name { flex: 1; }
+
+.badge {
+  background: #e7f8f0;
+  color: #279b79;
+  border-radius: 30px;
+  padding: 5px 9px;
+  font-size: 9px;
+  font-weight: bold;
+}
+
+/* PIPELINE */
+
+.pipeline-body { padding: 20px 15px; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  margin-bottom: 25px;
+}
+
+.step {
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.step-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 9px;
+  background: linear-gradient(135deg,#e578bb,#a080df);
+  color: white;
+}
+
+.step small {
+  display: block;
+  color: var(--muted);
+  margin-top: 5px;
+  font-size: 9px;
+}
+
+.logs {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px;
+}
+
+.logs-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.log-lines {
+  font: 10px/2 monospace;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.log-lines span { color: #b17acb; }
+
+/* ACTIVITY */
+
+.activity-list { padding: 8px 17px; }
+
+.activity {
+  display: grid;
+  grid-template-columns: 10px 1fr auto;
+  gap: 10px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.activity:last-child { border: 0; }
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #55b89b;
+  margin-top: 4px;
+}
+
+.activity strong {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.activity small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.activity time {
+  font-size: 9px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1150px) {
+  .layout { grid-template-columns: 205px 1fr; }
+  main { padding: 20px; }
+  .content-grid { grid-template-columns: 1fr 1fr; }
+  .activity-panel { grid-column: 1/-1; }
+  .metrics { gap: 10px; }
+  .metric { padding: 14px; }
+}
+
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { padding: 14px; }
+  .brand { margin-bottom: 15px; }
+  .nav-label, .sidebar-bottom { display: none; }
+  nav { display: flex; overflow-x: auto; }
+  nav a { white-space: nowrap; }
+  main { padding: 18px 14px 0; }
+  .hero { grid-template-columns: 1fr; padding: 25px; }
+  .hero-art { min-height: 200px; }
+  .content-grid { grid-template-columns: 1fr; }
+  .activity-panel { grid-column: auto; }
+}
+
+@media (max-width: 520px) {
+  .metrics { grid-template-columns: 1fr 1fr; gap: 9px; }
+  .metric { flex-direction: column; align-items: flex-start; }
+  .metric strong { font-size: 17px; }
+  .page-title { align-items: flex-start; }
+  .date-chip { display: none; }
+  .hero h2 { font-size: 31px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">☁</div>
+      <div>
+        <h2>DevOps<span>Hub</span></h2>
+        <small>BUILD · DEPLOY · MONITOR</small>
+      </div>
+    </div>
+
+    <div class="nav-label">Workspace</div>
+
+    <nav>
+      <a class="active" href="#top">⌂ &nbsp; Overview</a>
+      <a href="#infrastructure">☁ &nbsp; Infrastructure</a>
+      <a href="#deployments">⇧ &nbsp; Deployments</a>
+      <a href="#monitoring">⌁ &nbsp; Monitoring</a>
+      <a href="#logs">▤ &nbsp; Build logs</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="side-card">
+        ✦
+        <h4>Ship something lovely.</h4>
+        <p>Your little corner of cloud operations. Keep building, keep learning.</p>
+      </div>
+
+      <div class="profile">
+        <div class="avatar">JD</div>
+        <div>
+          <strong>DevOps Engineer</strong><br>
+          <small>Project workspace</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main id="top">
+
+    <div class="topbar">
+      <div style="font-size:12px;color:var(--muted)">Workspace / Overview</div>
+
+      <div class="search">
+        <input id="search" type="search"
+          placeholder="Search resources, activity...">
+      </div>
+
+      <button class="icon-btn" id="themeBtn" title="Toggle dark mode">☾</button>
+    </div>
+
+    <div class="page-title">
+      <div>
+        <div class="overline">YOUR CLOUD WORKSPACE</div>
+        <h1>Good evening, engineer ✦</h1>
+        <p>Here's what's happening across your demo platform.</p>
+      </div>
+      <div class="date-chip" id="today">Project dashboard</div>
+    </div>
+
+    <section class="hero">
+      <div>
+        <div class="hero-tag">● &nbsp; AWS · TERRAFORM · JENKINS · DOCKER</div>
+
+        <h2>
+          Build with purpose.<br>
+          <span class="gradient-text">Deploy with confidence.</span>
+        </h2>
+
+        <p>
+          A pastel little control center for your DevOps journey.
+          Explore infrastructure, follow the delivery pipeline,
+          and keep an eye on system activity — all in one place.
+        </p>
+
+        <a href="#infrastructure" class="btn">
+          Explore infrastructure →
+        </a>
+      </div>
+
+      <div class="hero-art">
+        <div class="tech aws">☁ AWS</div>
+        <div class="tech tf">◈ Terraform</div>
+        <div class="tech jenkins">⚙ Jenkins</div>
+        <div class="tech docker">▣ Docker</div>
+        <div class="tech github">◉ GitHub</div>
+        <div class="tech monitor">▥ Monitor</div>
+
+        <div class="cloud">☁</div>
+
+        <div class="server-stack">
+          <div class="server">● EC2 · Online</div>
+          <div class="server">● Build · Ready</div>
+          <div class="server">● Deploy · Live</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric searchable">
+        <div class="metric-icon">☁</div>
+        <div>
+          <small>Infrastructure status</small>
+          <strong style="color:var(--green)">● Healthy</strong>
+          <p>Sample dashboard data</p>
+        </div>
+      </article>
+
+      <article class="metric searchable">
+        <div class="metric-icon">↗</div>
+        <div>
+          <small>Latest release</small>
+          <strong>v1.0.0</strong>
+          <p>Demo release</p>
+        </div>
+      </article>
+
+      <article class="metric searchable">
+        <div class="metric-icon">◈</div>
+        <div>
+          <small>Application uptime</small>
+          <strong>99.9%</strong>
+          <p>Illustrative metric</p>
+        </div>
+      </article>
+
+      <article class="metric searchable">
+        <div class="metric-icon">▥</div>
+        <div>
+          <small>Compute instances</small>
+          <strong>2 / 2</strong>
+          <p>Sample EC2 status</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="content-grid">
+
+      <article class="panel" id="infrastructure">
+        <div class="panel-head">
+          <h3>▦ Infrastructure</h3>
+          <button class="text-btn" onclick="showToast('These are sample statuses, not live AWS data.')">
+            View details ↗
+          </button>
+        </div>
+
+        <div class="resource-list">
+          <div class="resource searchable">
+            <span>◉</span>
+            <span class="resource-name">Application Load Balancer</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>▤</span>
+            <span class="resource-name">EC2 Auto Scaling</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>▰</span>
+            <span class="resource-name">RDS · MySQL</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>▱</span>
+            <span class="resource-name">S3 Bucket</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>♙</span>
+            <span class="resource-name">VPC & Subnets</span>
+            <span class="badge">Healthy</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel" id="deployments">
+        <div class="panel-head">
+          <h3>⇧ Delivery pipeline</h3>
+          <button class="text-btn" id="runPipeline">↻ Run demo</button>
+        </div>
+
+        <div class="pipeline-body">
+          <div class="steps">
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Code<small>GitHub</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Build<small>Jenkins</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Image<small>Docker</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Deploy<small>EC2</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Live<small>AWS</small>
+            </div>
+          </div>
+
+          <div class="logs" id="logs">
+            <div class="logs-head">
+              <span>Latest build logs</span>
+              <button class="text-btn" id="clearLogs">Clear</button>
+            </div>
+
+            <div class="log-lines" id="logLines">
+              <div><span>14:32:10</span> [INFO] Demo pipeline ready.</div>
+              <div><span>14:32:12</span> [INFO] Waiting for a new build...</div>
+              <div><span>14:32:25</span> [INFO] All steps are illustrative.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel activity-panel" id="monitoring">
+        <div class="panel-head">
+          <h3>◷ Recent activity</h3>
+        </div>
+
+        <div class="activity-list">
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Demo deployment ready</strong>
+              <small>Sample release v1.0.0 is displayed</small>
+            </div>
+            <time>Just now</time>
+          </div>
+
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Infrastructure configured</strong>
+              <small>Terraform resources represented</small>
+            </div>
+            <time>12m ago</time>
+          </div>
+
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Container image built</strong>
+              <small>Docker build step represented</small>
+            </div>
+            <time>18m ago</time>
+          </div>
+
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Health check passed</strong>
+              <small>Example status for the dashboard</small>
+            </div>
+            <time>25m ago</time>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>
+      Made with 💗 for your DevOps portfolio · AWS · Terraform · Jenkins · Docker
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // Date
+  document.getElementById("today").textContent =
+    "◷ " + new Date().toLocaleDateString(undefined, {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    });
+
+  // Dark mode
+  const themeBtn = document.getElementById("themeBtn");
+
+  if (localStorage.getItem("devopshub-theme") === "dark") {
+    document.body.classList.add("dark");
+    themeBtn.textContent = "☀";
+  }
+
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    const dark = document.body.classList.contains("dark");
+
+    localStorage.setItem("devopshub-theme", dark ? "dark" : "light");
+    themeBtn.textContent = dark ? "☀" : "☾";
+  });
+
+  // Search
+  document.getElementById("search").addEventListener("input", function () {
+    const query = this.value.trim().toLowerCase();
+
+    document.querySelectorAll(".searchable").forEach(item => {
+      item.style.display =
+        item.textContent.toLowerCase().includes(query) ? "" : "none";
+    });
+  });
+
+  // Toast notification
+  function showToast(message) {
+    let toast = document.getElementById("toast");
+
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "toast";
+
+      Object.assign(toast.style, {
+        position: "fixed",
+        bottom: "22px",
+        right: "22px",
+        padding: "15px 20px",
+        background: "#3d2c5c",
+        color: "white",
+        borderRadius: "12px",
+        fontSize: "12px",
+        zIndex: "1000",
+        boxShadow: "0 8px 25px #0002"
+      });
+
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer = setTimeout(() => {
+      toast.style.display = "none";
+    }, 3000);
+  }
+
+  // Demo pipeline animation only
+  const runBtn = document.getElementById("runPipeline");
+  const logLines = document.getElementById("logLines");
+  const steps = [...document.querySelectorAll(".step-icon")];
+
+  let running = false;
+
+  runBtn.addEventListener("click", async () => {
+    if (running) return;
+
+    running = true;
+    runBtn.textContent = "Running…";
+    logLines.innerHTML = "";
+
+    const stages = [
+      "Code checkout — GitHub",
+      "Build and test — Jenkins",
+      "Build container image — Docker",
+      "Deploy application — EC2",
+      "Demo pipeline complete — AWS"
+    ];
+
+    steps.forEach(step => step.textContent = "·");
+
+    for (let i = 0; i < stages.length; i++) {
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      const line = document.createElement("div");
+      const time = new Date().toLocaleTimeString();
+
+      line.innerHTML = `<span>${time}</span> [DEMO] ${stages[i]}`;
+
+      logLines.appendChild(line);
+      steps[i].textContent = "✓";
+    }
+
+    runBtn.textContent = "↻ Run demo";
+    running = false;
+
+    showToast(
+      "Demo finished! No real Jenkins job or AWS deployment was triggered."
+    );
+  });
+
+  // Clear logs
+  document.getElementById("clearLogs").addEventListener("click", () => {
+    logLines.innerHTML =
+      "<div>Logs cleared. Click Run demo to replay.</div>";
+  });
+</script>
+
+</body>
+</html>
