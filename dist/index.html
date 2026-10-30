@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevOpsHub | Cloud Operations</title>
+
+<style>@import "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap";:root{--bg:#fbf8ff;--card:#fff;--ink:#302451;--muted:#8a80a8;--line:#eee5f8;--pink:#df70b9;--lav:#9c82dc;--green:#279b79;--shadow:0 12px 35px #694b9612}body.dark{--bg:#171326;--card:#241d37;--ink:#f4edff;--muted:#b5a8ce;--line:#403354;--shadow:0 12px 35px #0000002e}*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--ink);font-family:DM Sans,sans-serif;transition:all .25s}a{color:inherit;text-decoration:none}button,input{font:inherit}.layout{grid-template-columns:235px 1fr;min-height:100vh;display:grid}.sidebar{border-right:1px solid var(--line);background:linear-gradient(#f0e7ff,#fff0f8);flex-direction:column;padding:28px 18px;display:flex}body.dark .sidebar{background:#241a36}.brand{align-items:center;gap:12px;margin-bottom:38px;display:flex}.brand-icon{color:#fff;background:linear-gradient(135deg,#b49aea,#e68bc7);border-radius:15px;place-items:center;width:43px;height:43px;font-size:23px;display:grid}.brand h2{font:800 20px Manrope}.brand h2 span{color:#b06fca}.brand small{color:var(--muted);font-size:10px}.nav-label{letter-spacing:1.5px;color:#a99cbd;text-transform:uppercase;margin:0 12px 12px;font-size:10px}nav{gap:7px;display:grid}nav a{color:var(--muted);border-radius:12px;padding:13px;font-size:13px;font-weight:600;transition:all .2s}nav a:hover,nav a.active{color:#9861b8;background:linear-gradient(100deg,#f8dff1,#e9e1ff)}.sidebar-bottom{margin-top:auto}.side-card{background:linear-gradient(135deg,#fff7fd,#f1eaff);border:1px solid #e9d9f3;border-radius:16px;margin-bottom:20px;padding:17px}body.dark .side-card{background:#2d2240}.side-card h4{margin:10px 0 7px}.side-card p{color:var(--muted);font-size:11px;line-height:1.6}.profile{border-top:1px solid var(--line);align-items:center;gap:10px;padding-top:15px;display:flex}.avatar{color:#6c4a9d;background:linear-gradient(135deg,#f8d5e9,#d9ceff);border-radius:50%;place-items:center;width:37px;height:37px;font-weight:700;display:grid}.profile small{color:var(--muted);font-size:11px}main{min-width:0;padding:24px 30px 0}.topbar{align-items:center;gap:13px;margin-bottom:28px;display:flex}.search{flex:1;max-width:440px;margin-left:auto;position:relative}.search input{border:1px solid var(--line);background:var(--card);width:100%;color:var(--ink);border-radius:13px;outline:none;padding:12px 15px}.search input:focus{border-color:var(--lav)}.icon-btn{border:1px solid var(--line);background:var(--card);width:40px;height:40px;color:var(--ink);cursor:pointer;border-radius:12px}.page-title{justify-content:space-between;align-items:end;margin-bottom:22px;display:flex}.overline{color:#b17bc8;letter-spacing:1.5px;margin-bottom:10px;font-size:10px;font-weight:700}.page-title h1{letter-spacing:-1px;margin-bottom:8px;font:800 clamp(25px,3vw,34px) Manrope}.page-title p{color:var(--muted);font-size:13px}.date-chip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:12px;padding:11px 14px;font-size:11px}.hero{box-shadow:var(--shadow);background:linear-gradient(115deg,#fff0f9,#f5edff 60%,#ece6ff);border:1px solid #e8d7f7;border-radius:23px;grid-template-columns:1.1fr .9fr;align-items:center;gap:20px;padding:35px;display:grid;overflow:hidden}body.dark .hero{border-color:var(--line);background:linear-gradient(115deg,#38233f,#2c254a)}.hero-tag{color:#9771b4;background:#ffffffb5;border-radius:30px;padding:8px 13px;font-size:11px;font-weight:700;display:inline-block}.hero h2{letter-spacing:-1.5px;margin:20px 0 12px;font:800 clamp(28px,3.5vw,43px)/1.2 Manrope}.gradient-text{color:#0000;background:linear-gradient(90deg,#d65eae,#9274d6);-webkit-background-clip:text;background-clip:text}.hero p{color:#82769e;max-width:480px;margin-bottom:23px;font-size:13px;line-height:1.8}body.dark .hero p{color:#c2b4d9}.btn{color:#fff;cursor:pointer;background:linear-gradient(100deg,#df70b9,#a17de0);border:0;border-radius:12px;padding:13px 19px;font-size:12px;font-weight:700;transition:all .2s;display:inline-block}.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px #dca4d955}.hero-art{place-items:center;min-height:220px;display:grid;position:relative}.cloud{color:#b5a0ec;filter:drop-shadow(0 12px 15px #b8a1dc66);font-size:110px}.server-stack{gap:7px;width:125px;display:grid;position:absolute;top:58%}.server{color:#fff;background:linear-gradient(90deg,#b47cdd,#8c78d9);border-radius:7px;padding:9px;font-size:10px;box-shadow:0 5px 10px #b8a2df70}.tech{color:#6c5a98;box-shadow:var(--shadow);background:#ffffffdf;border:1px solid #eadcf7;border-radius:12px;padding:10px 13px;font-size:11px;font-weight:700;position:absolute}.tech.aws{top:5px;left:0}.tech.tf{top:5px;right:0}.tech.jenkins{top:45%;left:-10px}.tech.docker{top:45%;right:-10px}.tech.github{bottom:0;left:5%}.tech.monitor{bottom:0;right:0}.metrics{grid-template-columns:repeat(4,1fr);gap:15px;margin:22px 0;display:grid}.metric{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:17px;align-items:center;gap:14px;padding:19px;display:flex}.metric-icon{color:#a06dc7;background:linear-gradient(135deg,#fbe5f6,#e9e1ff);border-radius:14px;flex-shrink:0;place-items:center;width:45px;height:45px;font-size:20px;display:grid}.metric small{color:var(--muted);margin-bottom:8px;font-size:10px;display:block}.metric strong{font:800 20px Manrope;display:block}.metric p{color:var(--muted);margin-top:6px;font-size:10px}.content-grid{grid-template-columns:1fr 1.2fr 1fr;gap:16px;margin-bottom:25px;display:grid}.panel{background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);border-radius:18px;overflow:hidden}.panel-head{border-bottom:1px solid var(--line);justify-content:space-between;align-items:center;padding:17px;display:flex}.panel-head h3{font:700 13px Manrope}.text-btn{color:#a477c5;cursor:pointer;background:0 0;border:0;font-size:11px}.resource-list{padding:5px 17px}.resource{border-bottom:1px solid var(--line);align-items:center;gap:9px;padding:14px 0;font-size:11px;display:flex}.resource:last-child{border:0}.resource-name{flex:1}.badge{color:#279b79;background:#e7f8f0;border-radius:30px;padding:5px 9px;font-size:9px;font-weight:700}.pipeline-body{padding:20px 15px}.steps{grid-template-columns:repeat(5,1fr);margin-bottom:25px;display:grid}.step{text-align:center;font-size:10px;font-weight:700}.step-icon{color:#fff;background:linear-gradient(135deg,#e578bb,#a080df);border-radius:50%;place-items:center;width:26px;height:26px;margin:0 auto 9px;display:grid}.step small{color:var(--muted);margin-top:5px;font-size:9px;display:block}.logs{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:13px}.logs-head{justify-content:space-between;margin-bottom:10px;font-size:11px;font-weight:700;display:flex}.log-lines{color:var(--muted);overflow-wrap:anywhere;font:10px/2 monospace}.log-lines span{color:#b17acb}.activity-list{padding:8px 17px}.activity{border-bottom:1px solid var(--line);grid-template-columns:10px 1fr auto;align-items:start;gap:10px;padding:14px 0;display:grid}.activity:last-child{border:0}.dot{background:#55b89b;border-radius:50%;width:8px;height:8px;margin-top:4px}.activity strong{margin-bottom:5px;font-size:11px;display:block}.activity small{color:var(--muted);font-size:10px;line-height:1.5;display:block}.activity time{color:var(--muted);white-space:nowrap;font-size:9px}footer{text-align:center;border-top:1px solid var(--line);color:var(--muted);padding:20px;font-size:11px}@media (width<=1150px){.layout{grid-template-columns:205px 1fr}main{padding:20px}.content-grid{grid-template-columns:1fr 1fr}.activity-panel{grid-column:1/-1}.metrics{gap:10px}.metric{padding:14px}}@media (width<=800px){.layout{grid-template-columns:1fr}.sidebar{padding:14px}.brand{margin-bottom:15px}.nav-label,.sidebar-bottom{display:none}nav{display:flex;overflow-x:auto}nav a{white-space:nowrap}main{padding:18px 14px 0}.hero{grid-template-columns:1fr;padding:25px}.hero-art{min-height:200px}.content-grid{grid-template-columns:1fr}.activity-panel{grid-column:auto}}@media (width<=520px){.metrics{grid-template-columns:1fr 1fr;gap:9px}.metric{flex-direction:column;align-items:flex-start}.metric strong{font-size:17px}.page-title{align-items:flex-start}.date-chip{display:none}.hero h2{font-size:31px}}</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-icon">☁</div>
+      <div>
+        <h2>DevOps<span>Hub</span></h2>
+        <small>BUILD · DEPLOY · MONITOR</small>
+      </div>
+    </div>
+
+    <div class="nav-label">Workspace</div>
+
+    <nav>
+      <a class="active" href="#top">⌂ &nbsp; Overview</a>
+      <a href="#infrastructure">☁ &nbsp; Infrastructure</a>
+      <a href="#deployments">⇧ &nbsp; Deployments</a>
+      <a href="#monitoring">⌁ &nbsp; Monitoring</a>
+      <a href="#logs">▤ &nbsp; Build logs</a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="side-card">
+        ✦
+        <h4>Ship something lovely.</h4>
+        <p>Your little corner of cloud operations. Keep building, keep learning.</p>
+      </div>
+
+      <div class="profile">
+        <div class="avatar">JD</div>
+        <div>
+          <strong>DevOps Engineer</strong><br>
+          <small>Project workspace</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main id="top">
+
+    <div class="topbar">
+      <div style="font-size:12px;color:var(--muted)">Workspace / Overview</div>
+
+      <div class="search">
+        <input id="search" type="search"
+          placeholder="Search resources, activity...">
+      </div>
+
+      <button class="icon-btn" id="themeBtn" title="Toggle dark mode">☾</button>
+    </div>
+
+    <div class="page-title">
+      <div>
+        <div class="overline">YOUR CLOUD WORKSPACE</div>
+        <h1>Good evening, engineer ✦</h1>
+        <p>Here's what's happening across your demo platform.</p>
+      </div>
+      <div class="date-chip" id="today">Project dashboard</div>
+    </div>
+
+    <section class="hero">
+      <div>
+        <div class="hero-tag">● &nbsp; AWS · TERRAFORM · JENKINS · DOCKER</div>
+
+        <h2>
+          Build with purpose.<br>
+          <span class="gradient-text">Deploy with confidence.</span>
+        </h2>
+
+        <p>
+          A pastel little control center for your DevOps journey.
+          Explore infrastructure, follow the delivery pipeline,
+          and keep an eye on system activity — all in one place.
+        </p>
+
+        <a href="#infrastructure" class="btn">
+          Explore infrastructure →
+        </a>
+      </div>
+
+      <div class="hero-art">
+        <div class="tech aws">☁ AWS</div>
+        <div class="tech tf">◈ Terraform</div>
+        <div class="tech jenkins">⚙ Jenkins</div>
+        <div class="tech docker">▣ Docker</div>
+        <div class="tech github">◉ GitHub</div>
+        <div class="tech monitor">▥ Monitor</div>
+
+        <div class="cloud">☁</div>
+
+        <div class="server-stack">
+          <div class="server">● EC2 · Online</div>
+          <div class="server">● Build · Ready</div>
+          <div class="server">● Deploy · Live</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics">
+      <article class="metric searchable">
+        <div class="metric-icon">☁</div>
+        <div>
+          <small>Infrastructure status</small>
+          <strong style="color:var(--green)">● Healthy</strong>
+          <p>Sample dashboard data</p>
+        </div>
+      </article>
+
+      <article class="metric searchable">
+        <div class="metric-icon">↗</div>
+        <div>
+          <small>Latest release</small>
+          <strong>v1.0.0</strong>
+          <p>Demo release</p>
+        </div>
+      </article>
+
+      <article class="metric searchable">
+        <div class="metric-icon">◈</div>
+        <div>
+          <small>Application uptime</small>
+          <strong>99.9%</strong>
+          <p>Illustrative metric</p>
+        </div>
+      </article>
+
+      <article class="metric searchable">
+        <div class="metric-icon">▥</div>
+        <div>
+          <small>Compute instances</small>
+          <strong>2 / 2</strong>
+          <p>Sample EC2 status</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="content-grid">
+
+      <article class="panel" id="infrastructure">
+        <div class="panel-head">
+          <h3>▦ Infrastructure</h3>
+          <button class="text-btn" onclick="showToast('These are sample statuses, not live AWS data.')">
+            View details ↗
+          </button>
+        </div>
+
+        <div class="resource-list">
+          <div class="resource searchable">
+            <span>◉</span>
+            <span class="resource-name">Application Load Balancer</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>▤</span>
+            <span class="resource-name">EC2 Auto Scaling</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>▰</span>
+            <span class="resource-name">RDS · MySQL</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>▱</span>
+            <span class="resource-name">S3 Bucket</span>
+            <span class="badge">Healthy</span>
+          </div>
+
+          <div class="resource searchable">
+            <span>♙</span>
+            <span class="resource-name">VPC & Subnets</span>
+            <span class="badge">Healthy</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel" id="deployments">
+        <div class="panel-head">
+          <h3>⇧ Delivery pipeline</h3>
+          <button class="text-btn" id="runPipeline">↻ Run demo</button>
+        </div>
+
+        <div class="pipeline-body">
+          <div class="steps">
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Code<small>GitHub</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Build<small>Jenkins</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Image<small>Docker</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Deploy<small>EC2</small>
+            </div>
+            <div class="step">
+              <div class="step-icon">✓</div>
+              Live<small>AWS</small>
+            </div>
+          </div>
+
+          <div class="logs" id="logs">
+            <div class="logs-head">
+              <span>Latest build logs</span>
+              <button class="text-btn" id="clearLogs">Clear</button>
+            </div>
+
+            <div class="log-lines" id="logLines">
+              <div><span>14:32:10</span> [INFO] Demo pipeline ready.</div>
+              <div><span>14:32:12</span> [INFO] Waiting for a new build...</div>
+              <div><span>14:32:25</span> [INFO] All steps are illustrative.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel activity-panel" id="monitoring">
+        <div class="panel-head">
+          <h3>◷ Recent activity</h3>
+        </div>
+
+        <div class="activity-list">
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Demo deployment ready</strong>
+              <small>Sample release v1.0.0 is displayed</small>
+            </div>
+            <time>Just now</time>
+          </div>
+
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Infrastructure configured</strong>
+              <small>Terraform resources represented</small>
+            </div>
+            <time>12m ago</time>
+          </div>
+
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Container image built</strong>
+              <small>Docker build step represented</small>
+            </div>
+            <time>18m ago</time>
+          </div>
+
+          <div class="activity searchable">
+            <span class="dot"></span>
+            <div>
+              <strong>Health check passed</strong>
+              <small>Example status for the dashboard</small>
+            </div>
+            <time>25m ago</time>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>
+      Made with 💗 for your DevOps portfolio · AWS · Terraform · Jenkins · Docker
+    </footer>
+
+  </main>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

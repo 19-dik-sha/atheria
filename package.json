@@ -1,0 +1,24 @@
+{
+  "name": "atheria",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/19-dik-sha/atheria.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/19-dik-sha/atheria/issues"
+  },
+  "homepage": "https://github.com/19-dik-sha/atheria#readme",
+  "description": "",
+  "devDependencies": {
+    "vite": "^8.3.5"
+  }
+}
